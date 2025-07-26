@@ -9,6 +9,8 @@ import Vendors from "@/pages/Vendors";
 import Suppliers from "@/pages/Suppliers";
 import VendorDashboard from "@/pages/VendorDashboard";
 import SupplierDashboard from "@/pages/SupplierDashboard";
+import HowItWorks from "@/pages/HowItWorks";
+import About from "@/pages/About";
 
 export default function App() {
   return (
