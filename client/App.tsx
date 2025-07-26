@@ -1,30 +1,38 @@
-import "./global.css";
-
-import { Toaster } from "@/components/ui/toaster";
-import { createRoot } from "react-dom/client";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { Layout } from '@/components/Layout';
+import Index from "@/pages/Index";
+import NotFound from "@/pages/NotFound";
+import Placeholder from "@/pages/Placeholder";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          
+          {/* Vendor Routes */}
+          <Route path="/vendors" element={<Placeholder />} />
+          <Route path="/vendors/dashboard" element={<Placeholder />} />
+          <Route path="/vendors/support" element={<Placeholder />} />
+          
+          {/* Supplier Routes */}
+          <Route path="/suppliers" element={<Placeholder />} />
+          <Route path="/suppliers/dashboard" element={<Placeholder />} />
+          <Route path="/suppliers/support" element={<Placeholder />} />
+          
+          {/* Auth Routes */}
+          <Route path="/login" element={<Placeholder />} />
+          <Route path="/signup" element={<Placeholder />} />
+          
+          {/* Info Pages */}
+          <Route path="/how-it-works" element={<Placeholder />} />
+          <Route path="/about" element={<Placeholder />} />
+          
+          {/* Catch-all route for 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-createRoot(document.getElementById("root")!).render(<App />);
+      </Layout>
+    </BrowserRouter>
+  );
+}
