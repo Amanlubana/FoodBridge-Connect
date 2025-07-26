@@ -1,53 +1,59 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Users, 
-  Truck, 
-  ArrowRight, 
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import {
+  Users,
+  Truck,
+  ArrowRight,
   Check,
   Mail,
   Lock,
   User,
   Phone,
-  Building
-} from 'lucide-react';
+  Building,
+} from "lucide-react";
 
-type UserType = 'vendor' | 'supplier' | null;
+type UserType = "vendor" | "supplier" | null;
 
 export default function Signup() {
   const [userType, setUserType] = useState<UserType>(null);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    password: '',
-    businessName: '',
-    location: ''
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    businessName: "",
+    location: "",
   });
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real app, this would make an API call
-    console.log('Signup data:', { userType, ...formData });
-    
+    console.log("Signup data:", { userType, ...formData });
+
     // Redirect to appropriate dashboard
-    if (userType === 'vendor') {
-      navigate('/vendors/dashboard');
-    } else if (userType === 'supplier') {
-      navigate('/suppliers/dashboard');
+    if (userType === "vendor") {
+      navigate("/vendors/dashboard");
+    } else if (userType === "supplier") {
+      navigate("/suppliers/dashboard");
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -67,9 +73,9 @@ export default function Signup() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
               {/* Vendor Card */}
-              <Card 
+              <Card
                 className="cursor-pointer transition-all hover:shadow-xl hover:scale-105 border-2 hover:border-primary"
-                onClick={() => setUserType('vendor')}
+                onClick={() => setUserType("vendor")}
               >
                 <CardHeader className="text-center pb-8">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto text-primary">
@@ -84,15 +90,21 @@ export default function Signup() {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                       <Check className="w-4 h-4 text-primary" />
-                      <span className="text-sm">Access to verified suppliers</span>
+                      <span className="text-sm">
+                        Access to verified suppliers
+                      </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Check className="w-4 h-4 text-primary" />
-                      <span className="text-sm">Competitive wholesale pricing</span>
+                      <span className="text-sm">
+                        Competitive wholesale pricing
+                      </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Check className="w-4 h-4 text-primary" />
-                      <span className="text-sm">Reliable delivery schedules</span>
+                      <span className="text-sm">
+                        Reliable delivery schedules
+                      </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Check className="w-4 h-4 text-primary" />
@@ -107,9 +119,9 @@ export default function Signup() {
               </Card>
 
               {/* Supplier Card */}
-              <Card 
+              <Card
                 className="cursor-pointer transition-all hover:shadow-xl hover:scale-105 border-2 hover:border-accent"
-                onClick={() => setUserType('supplier')}
+                onClick={() => setUserType("supplier")}
               >
                 <CardHeader className="text-center pb-8">
                   <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto text-accent">
@@ -139,7 +151,10 @@ export default function Signup() {
                       <span className="text-sm">Route optimization tools</span>
                     </div>
                   </div>
-                  <Button className="w-full mt-6 bg-accent hover:bg-accent/90 text-accent-foreground" size="lg">
+                  <Button
+                    className="w-full mt-6 bg-accent hover:bg-accent/90 text-accent-foreground"
+                    size="lg"
+                  >
                     Sign Up as Supplier
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -149,8 +164,11 @@ export default function Signup() {
 
             <div className="text-center pt-8">
               <p className="text-muted-foreground">
-                Already have an account?{' '}
-                <Link to="/login" className="text-primary hover:underline font-medium">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="text-primary hover:underline font-medium"
+                >
                   Sign in here
                 </Link>
               </p>
@@ -168,16 +186,18 @@ export default function Signup() {
           <Card className="border-0 shadow-xl">
             <CardHeader className="text-center">
               <div className="flex items-center justify-center space-x-2 mb-4">
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="sm"
                   onClick={() => setUserType(null)}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   ← Back
                 </Button>
-                <Badge variant={userType === 'vendor' ? 'default' : 'secondary'}>
-                  {userType === 'vendor' ? (
+                <Badge
+                  variant={userType === "vendor" ? "default" : "secondary"}
+                >
+                  {userType === "vendor" ? (
                     <>
                       <Users className="w-4 h-4 mr-1" />
                       Vendor
@@ -256,7 +276,11 @@ export default function Signup() {
                       id="businessName"
                       name="businessName"
                       type="text"
-                      placeholder={userType === 'vendor' ? 'Your restaurant/stall name' : 'Your farm/business name'}
+                      placeholder={
+                        userType === "vendor"
+                          ? "Your restaurant/stall name"
+                          : "Your farm/business name"
+                      }
                       className="pl-10"
                       value={formData.businessName}
                       onChange={handleInputChange}
@@ -295,11 +319,18 @@ export default function Signup() {
                   </div>
                 </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full" 
+                <Button
+                  type="submit"
+                  className="w-full"
                   size="lg"
-                  style={userType === 'supplier' ? { backgroundColor: 'hsl(var(--accent))', color: 'hsl(var(--accent-foreground))' } : {}}
+                  style={
+                    userType === "supplier"
+                      ? {
+                          backgroundColor: "hsl(var(--accent))",
+                          color: "hsl(var(--accent-foreground))",
+                        }
+                      : {}
+                  }
                 >
                   Create Account
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -308,8 +339,11 @@ export default function Signup() {
 
               <div className="text-center mt-6">
                 <p className="text-sm text-muted-foreground">
-                  Already have an account?{' '}
-                  <Link to="/login" className="text-primary hover:underline font-medium">
+                  Already have an account?{" "}
+                  <Link
+                    to="/login"
+                    className="text-primary hover:underline font-medium"
+                  >
                     Sign in
                   </Link>
                 </p>
