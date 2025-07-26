@@ -34,8 +34,8 @@ export default function App() {
           <Route path="/suppliers/support" element={<Placeholder />} />
           
           {/* Info Pages */}
-          <Route path="/how-it-works" element={<Placeholder />} />
-          <Route path="/about" element={<Placeholder />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/about" element={<About />} />
           <Route path="/forgot-password" element={<Placeholder />} />
           
           {/* Catch-all route for 404 */}
